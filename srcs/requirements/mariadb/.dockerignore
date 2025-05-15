@@ -1,0 +1,12 @@
+# Fichiers système / backup
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Configs IDE
+.vscode/
+.idea/
+
+# Secrets (au cas où tu build depuis la racine)
+../../secrets/
