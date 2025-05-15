@@ -20,3 +20,9 @@ re: fclean build up
 
 logs:
 	$(COMPOSE) $(COMPOSE_FILE) $(ENV_FILE) logs -f
+
+reset: fclean
+	docker builder prune -f
+	docker image prune -f
+	docker system prune -f --volumes
+	sudo rm -rf $(HOME)/data/wordpress/* $(HOME)/data/mariadb/*
