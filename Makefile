@@ -16,7 +16,7 @@ down:
 fclean:
 	$(COMPOSE) $(COMPOSE_FILE) $(ENV_FILE) down --volumes --remove-orphans
 
-re: fclean build up
+re: reset all
 
 logs:
 	$(COMPOSE) $(COMPOSE_FILE) $(ENV_FILE) logs -f
@@ -26,3 +26,5 @@ reset: fclean
 	docker image prune -f
 	docker system prune -f --volumes
 	sudo rm -rf $(HOME)/data/wordpress/* $(HOME)/data/mariadb/*
+	docker compose ${COMPOSE_FILE} down --volumes --rmi all --remove-orphans
+	docker network prune -f
