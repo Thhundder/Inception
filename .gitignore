@@ -30,3 +30,5 @@ node_modules/
 *.pem
 *.crt
 *.key
+
+srcs/.env
