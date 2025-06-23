@@ -1,32 +1,32 @@
-# # Secrets (jamais versionner des mots de passe)
-# secrets/*
+# Secrets (jamais versionner des mots de passe)
+secrets/*
 
-# # Données bind-mount (ne jamais inclure les volumes)
-# */data/
-# data/
-# srcs/data/
-# srcs/requirements/*/data/
+# Données bind-mount (ne jamais inclure les volumes)
+*/data/
+data/
+srcs/data/
+srcs/requirements/*/data/
 
-# # Fichiers générés par Docker
-# **/__pycache__/
-# *.log
-# *.pid
+# Fichiers générés par Docker
+**/__pycache__/
+*.log
+*.pid
 
-# # Fichiers temporaires système ou IDE
-# *.swp
-# *.swo
-# *~
-# .DS_Store
-# .vscode/
-# .idea/
+# Fichiers temporaires système ou IDE
+*.swp
+*.swo
+*~
+.DS_Store
+.vscode/
+.idea/
 
-# # Build context (optionnel si tu as du cache)
-# srcs/requirements/**/build/
+# Build context (optionnel si tu as du cache)
+srcs/requirements/**/build/
 
-# # Node/npm (si jamais utilisé dans bonus)
-# node_modules/
+# Node/npm (si jamais utilisé dans bonus)
+node_modules/
 
-# # Certificats auto-signés si générés
-# *.pem
-# *.crt
-# *.key
+# Certificats auto-signés si générés
+*.pem
+*.crt
+*.key
