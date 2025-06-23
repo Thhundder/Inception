@@ -6,11 +6,14 @@ unset MYSQL_HOST
 ROOT_PASS=$(cat /run/secrets/db_root_password)
 USER_PASS=$(cat /run/secrets/db_user_password)
 
-# Démarrage temporaire pour init
-mysqld_safe --skip-networking &
+# On lance sans sudo donc il faut lui donner les perms d exec avec chown pour le volume
+chown -R mysql:mysql /var/lib/mysql
+
+# Démarrage temporaire pour init la db, le temps de la creation, en refusant toutes requetes
+mysqld_safe --skip-networking --user=mysql &
 pid=$!
 
-# Attente
+# Attente quil soit tout bien setup
 until mysqladmin ping -u root -p"$ROOT_PASS" --silent; do
   sleep 1
 done
@@ -25,6 +28,8 @@ mysql -u root -p"$ROOT_PASS" <<-EOSQL
   FLUSH PRIVILEGES;
 EOSQL
 
-# Remplacement du processus principal par MariaDB
+# Arrêt du serveur temporaire
 mysqladmin shutdown -p"$ROOT_PASS"
-exec mysqld
+
+# Lancement final en tant qu'utilisateur mysql
+exec mysqld --user=mysql

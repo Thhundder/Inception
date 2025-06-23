@@ -20,6 +20,7 @@ if [ -z "$(ls -A /var/www/html)" ]; then
   chown -R www-data:www-data /var/www/html
 fi
 
+# Configuration et installation WordPress
 if [ ! -f wp-config.php ]; then
   wp core download --allow-root
   wp config create --dbname="$WP_DB_NAME" --dbuser="$WP_DB_USER" --dbpass="$DB_PASS" \

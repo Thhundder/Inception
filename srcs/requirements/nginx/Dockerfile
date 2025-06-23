@@ -5,6 +5,7 @@ RUN apt-get update \
  && rm -rf /var/lib/apt/lists/*
 
 COPY tools/setup.sh /setup.sh
+
 RUN sed -i 's/\r$//' /setup.sh \
  && chmod +x /setup.sh \
  && /setup.sh
